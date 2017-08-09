@@ -110,7 +110,29 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        int arraySize = someJobs.size();
+        String boundary = "*****************";
 
-        System.out.println("printJobs is not implemented yet");
+        //check for 0 results
+        if (arraySize == 0) {
+            System.out.println("No results found.  Please try a new search!");
+        }
+
+        //iterate over all individual jobs
+        for (int i = 0; i < arraySize; i++) {
+            HashMap<String, String> job = someJobs.get(i);
+
+            //begin printing a job listing
+            System.out.println(boundary);
+            //iterate over/print the key value pairs for each job
+            for (String jobKey : job.keySet())
+            {
+                String heading = jobKey;
+                String entry = job.get(heading);
+
+                System.out.println(heading + ": " + entry);
+            }
+            System.out.println(boundary);
+        }
     }
 }
