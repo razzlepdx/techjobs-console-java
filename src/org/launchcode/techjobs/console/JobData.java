@@ -54,6 +54,28 @@ public class JobData {
         return allJobs;
     }
 
+    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+        //load data, just in case, as usual
+        loadData();
+        int arraySize = allJobs.size();
+        ArrayList<HashMap<String, String>> results = new ArrayList<>();
+
+        //iterate over all jobs in db/joblist
+        for (int i = 0; i < arraySize; i++) {
+            HashMap<String, String> job = allJobs.get(i);
+            //look for match within each listing
+            for (String jobKey : job.keySet()) {
+                String jobDetail = job.get(jobKey);
+                //add a match to result and move on to next job
+                if (jobDetail.contains(value)) {
+                    results.add(job);
+                    break;
+                }
+            }
+        }
+        return results;
+    };
+
     /**
      * Returns results of search the jobs data by key/value, using
      * inclusion of the search term.
@@ -64,8 +86,8 @@ public class JobData {
      * @param column   Column that should be searched.
      * @param value Value of teh field to search for
      * @return List of all jobs matching the criteria
-     */
-    public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
+     **/
+    public static ArrayList<HashMap<String, String>>findByColumnAndValue(String column, String value) {
 
         // load data, if not already loaded
         loadData();
