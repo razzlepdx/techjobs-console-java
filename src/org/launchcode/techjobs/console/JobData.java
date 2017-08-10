@@ -65,7 +65,7 @@ public class JobData {
             HashMap<String, String> job = allJobs.get(i);
             //look for match within each listing
             for (String jobKey : job.keySet()) {
-                String jobDetail = job.get(jobKey);
+                String jobDetail = job.get(jobKey).toLowerCase();
                 //add a match to result and move on to next job
                 if (jobDetail.contains(value)) {
                     results.add(job);
@@ -74,7 +74,7 @@ public class JobData {
             }
         }
         return results;
-    };
+    }
 
     /**
      * Returns results of search the jobs data by key/value, using
@@ -93,12 +93,13 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        String searchTerm = value.toLowerCase();
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (aValue.contains(searchTerm)) {
                 jobs.add(row);
             }
         }
