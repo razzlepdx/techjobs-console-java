@@ -54,7 +54,7 @@ public class JobData {
         return allJobs;
     }
 
-    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
         //load data, just in case, as usual
         loadData();
         int arraySize = allJobs.size();
